@@ -3,16 +3,17 @@ import { ITodo } from '../types';
 
 type TodoProps = {
   todo: ITodo
-  changeTodoStatus(id: number): void
+  completeTodo(id: number): void
   deleteTodo(id: number): void
 };
 
 const Todo: React.FC<TodoProps> = props => {
 
   const handleClick = () => {
-    const { changeTodoStatus, todo } = props;
-
-    changeTodoStatus(todo.id)
+    const { completeTodo, todo } = props;
+    if (todo.completed) return;
+    
+    completeTodo(todo.id)
   }
 
   const handleDelete = () => {

@@ -69,7 +69,7 @@ const App = (props: Props) => {
         )}
         <TodoList
           todos={sortedTodos}
-          changeTodoStatus={props.completeTodo}
+          completeTodo={props.completeTodo}
           deleteTodo={props.removeTodoFromStore}
         />
       </div>

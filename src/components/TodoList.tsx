@@ -5,7 +5,7 @@ import Todo from './Todo';
 
 interface TodoListProps {
   todos: Array<ITodo>
-  changeTodoStatus(id: number): void
+  completeTodo(id: number): void
   deleteTodo(id: number): void
 };
 
@@ -17,7 +17,7 @@ const TodoList: React.FC<TodoListProps> = props => {
         <Todo
           key={todo.id}
           todo={todo}
-          changeTodoStatus={props.changeTodoStatus}
+          completeTodo={props.completeTodo}
           deleteTodo={props.deleteTodo}
         />
       ))}
