@@ -5,11 +5,11 @@ import {
 } from './actionNames'
 import { ITodo, TodoActionTypes } from '../types'
 
-type stateTodos = ITodo[]
+export type stateTodos = ITodo[]
 
 const initialState: stateTodos = []
 
-const sorting = (state = initialState, action: TodoActionTypes) => {
+const todos_store = (state = initialState, action: TodoActionTypes) => {
   switch (action.type) {
     case ADD_TODO:
       return ([
@@ -34,4 +34,4 @@ const sorting = (state = initialState, action: TodoActionTypes) => {
   }
 };
 
-export default sorting;
+export default todos_store;

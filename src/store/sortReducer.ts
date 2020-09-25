@@ -3,7 +3,7 @@ import {
 } from './actionNames'
 import { Sorting, SortingActionType } from '../types'
 
-const DEFAULT_SORTING: Sorting = 'all'
+export const DEFAULT_SORTING: Sorting = 'all'
 
 const sorting = (state = DEFAULT_SORTING, action: SortingActionType) => {
   switch (action.type) {

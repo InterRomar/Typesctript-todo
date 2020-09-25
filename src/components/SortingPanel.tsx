@@ -1,17 +1,21 @@
-import React, { useState } from 'react';
+import React, { Dispatch } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-type SortingPanelProps = {
-  changeSortingStatus(status: string): void
-};
+import { Sorting, ITodo, SortingActionType } from '../types';
+import { RootState } from '../store/rootReducer';
+import { changeSortingAction } from '../store/actions';
 
-const SortingPanel: React.FC<SortingPanelProps> = props => {
+const SortingPanel: React.FC = () => {
+  const sortingStatus = useSelector<RootState, Sorting>(state => state.sortingStatus)
+  const todos = useSelector<RootState, ITodo[]>(state => state.todos_store)
 
-  const [sortingStatus, setSortingStatus] = useState('all')
+  const dispatchSortingStatus = useDispatch<Dispatch<SortingActionType>>()
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
-    setSortingStatus(event.currentTarget.name);
-    props.changeSortingStatus(event.currentTarget.name);
+    dispatchSortingStatus(changeSortingAction(event.currentTarget.name))
   }
+
+  if (!todos.length) return null
 
   return (
     <div className="sorting-panel">

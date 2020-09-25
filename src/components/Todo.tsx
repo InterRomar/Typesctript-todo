@@ -1,25 +1,26 @@
-import React from 'react';
-import { ITodo } from '../types';
+import React, { Dispatch } from 'react';
+import { ITodo, TodoActionTypes } from '../types';
+import { useDispatch } from 'react-redux';
+import { completeTodoAction, removeTodoAction } from '../store/actions';
 
 type TodoProps = {
   todo: ITodo
-  completeTodo(id: number): void
-  deleteTodo(id: number): void
 };
 
 const Todo: React.FC<TodoProps> = props => {
+  const todoDispatcher = useDispatch<Dispatch<TodoActionTypes>>()
 
   const handleClick = () => {
-    const { completeTodo, todo } = props;
+    const { todo } = props;
     if (todo.completed) return;
     
-    completeTodo(todo.id)
+    todoDispatcher(completeTodoAction(todo.id))
   }
 
   const handleDelete = () => {
-    const { deleteTodo, todo } = props;
+    const { todo } = props;
 
-    deleteTodo(todo.id)
+    todoDispatcher(removeTodoAction(todo.id))
   }
 
   return (
